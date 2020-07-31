@@ -1,12 +1,17 @@
 package edu.psu.sweng861;
 
 
-public class Stands4Obj {
+public class Stands4Obj implements Comparable<Stands4Obj> {
 
 	private int id;
 	private String song;
 	private String artist;
 	private String album;
+	
+	@Override
+	public int compareTo(Stands4Obj o) {
+		return this.artist.compareTo(o.artist);
+	}
 	
 	public Stands4Obj(int id, String song, String artist, String album) {
 		super();
@@ -43,6 +48,7 @@ public class Stands4Obj {
 	public String toString() {
 		return "Stands4Obj [id=" + id + ", song=" + song + ", artist=" + artist + ", album=" + album + "]";
 	}
-	
+
+
 	
 }

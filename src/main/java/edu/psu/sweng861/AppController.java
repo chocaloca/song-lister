@@ -1,12 +1,14 @@
 package edu.psu.sweng861;
 
+import java.util.Collections;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class AppController {
@@ -20,21 +22,11 @@ public class AppController {
 			@RequestParam(name = "term", required = true) String term ) {
 		System.out.println("home()- term: " + term);
 		String s = helper.returnStands4(term);
-		System.out.println("home()- s: " + s);
-		model.addAttribute("objs", helper.parseStands4Json(s));
-		
+		List<Stands4Obj> results = helper.parseStands4Json(s);
+		Collections.sort(results);
+		model.addAttribute("objs", results);
 		return "result";
 	}
-	
-//	@RequestMapping(value = "/apiseeds", method = RequestMethod.GET)
-//	public String grabApiSeeds(
-//			Model model,
-//			@RequestParam(name = "song", required = true) String song,
-//			@RequestParam(name = "artist", required = true) String artist) {
-//		
-//		String s = helper.returnApiSeeds(song, artist);
-//		return s;
-//	}
 	
 	
 	
