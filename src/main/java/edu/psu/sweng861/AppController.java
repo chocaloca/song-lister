@@ -22,10 +22,14 @@ public class AppController {
 			@RequestParam(name = "term", required = true) String term ) {
 		System.out.println("home()- term: " + term);
 		String s = helper.returnStands4(term);
-		List<Stands4Obj> results = helper.parseStands4Json(s);
-		Collections.sort(results);
-		model.addAttribute("objs", results);
-		return "result";
+		if( s.length() == 2 ) {
+			return "not-found";
+		} else {
+			List<Stands4Obj> results = helper.parseStands4Json(s);
+			Collections.sort(results);
+			model.addAttribute("objs", results);
+			return "result";
+		}
 	}
 	
 	
