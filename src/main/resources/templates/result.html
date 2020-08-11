@@ -10,14 +10,16 @@
 	crossorigin="anonymous">
 	<link rel="stylesheet" src="extensions/sticky-header/bootstrap-table-sticky-header.css">
 	<style>
+		html, body {height: 100%}
 		.wrapper {
 		  width: 70%;
 		  height: 500px;
 		  border: 1px solid #333;
 		  overflow-y: auto;
 		}
-		thead th {
-		  background: #000;
+		thead th {		background: #000;}
+		#myProgress {border: 1px solid black; margin-left: 10%; width: 80%; background-color: #ddd;}
+		#myBar {		width: 1%; height: 30px; background-color: gray;
 		}
 	</style>
 </head>
@@ -74,38 +76,33 @@
 				
 				
 				// Determine ratio of results to 100
+				len = result.length;
 				function ratio(result) {
-					len = result.length;
-					ratio = 0;
 					debug(len);
-					if(len >= 100) {
-						return len/100;
-					} else {
-						return 100/len;
-					}
+					return len/100;
 				}
 				var myratio = ratio(result)
 				debug("ratio: " + myratio)
+				
 				// Make width = ratio
-				
-				// Increment width by ratio
-				
 				var i = 0;
 				function move() {
 					debug("in fxn 1: " + myratio)
 				  if (i == 0) {
 					i = 1;
 					var elem = document.getElementById("myBar");
-					var width = myratio;
+					// Make width = ratio
+					var width = 1 * myratio;
 					var id = setInterval(frame, 10);
 					
 					function frame() {
-						debug("in fxn 2: " + myratio)
-					  if (width >= 100) {
+						//debug("in fxn 2-myratio: " + myratio + ", len: " + len)
+					  if (width >= len/myratio) {
 						clearInterval(id);
 						i = 0;
 					  } else {
-						width += myratio;
+						// Increment width by ratio
+						width++;
 						debug("width: " + width)
 						elem.style.width = width + "%";
 					  }
