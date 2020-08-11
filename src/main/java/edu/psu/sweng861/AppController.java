@@ -27,7 +27,7 @@ public class AppController {
 		} else {
 			List<Stands4Obj> results = helper.parseStands4Json(s);
 			Collections.sort(results);
-			model.addAttribute("objs", results);
+			model.addAttribute("results", results);
 			return "result";
 		}
 	}
