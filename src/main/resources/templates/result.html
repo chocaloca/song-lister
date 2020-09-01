@@ -18,7 +18,7 @@
 		  overflow-y: auto;
 		}
 		thead th {		background: #000;}
-		#myProgress {border: 3px solid black; margin-left: 15%; margin-right: 15%; width: 70%; background-color: #ddd;}
+		#myProgress {	margin-left: 15%; margin-right: 15%; width: 70%; background-color: #ddd;}
 		#myBar {		width: 1%; height: 30px; background-color: lightblue;
 		}
 	</style>
@@ -73,10 +73,9 @@
 				/*<![CDATA[*/
 				
 				var result = [[${results}]];
-				
-				
+								
 				// Determine ratio of results to 100
-				len = result.length;
+				var len = result.length;
 				function ratio(result) {
 					debug(len);
 					return len/100;
@@ -98,6 +97,7 @@
 					function frame() {
 						//debug("in fxn 2-myratio: " + myratio + ", len: " + len)
 					  if (width >= len/myratio) {
+						width = 100;
 						clearInterval(id);
 						i = 0;
 					  } else {
